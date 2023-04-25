@@ -16,3 +16,4 @@ Route::get('/users', [AdminController::class, 'users']);
 Route::get('/category', [AdminController::class, 'category']);
 
 Route::get('/bulletin', [AdminController::class, 'bulletin']);
+Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');

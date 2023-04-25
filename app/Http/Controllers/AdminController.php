@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Bulletin;
 
 class AdminController extends Controller
 {
@@ -19,6 +20,12 @@ class AdminController extends Controller
 
     public function bulletin()
     {
-        return view('admin.bulletin');
+        $all = Bulletin::all();
+        return view('admin.bulletin',compact('all'));
+    }
+
+    public function bulletin_check(Request $request)
+    {
+        return $request->all();
     }
 }

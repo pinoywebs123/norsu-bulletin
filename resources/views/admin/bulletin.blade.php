@@ -22,6 +22,10 @@
 
     <!-- Custom styles for this page -->
     <link href="{{URL::to('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
 </head>
 
@@ -157,14 +161,18 @@
                                     </thead>
                                    
                                     <tbody>
+                                        @foreach($all as $bulletin)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                            <td>{{$bulletin->title}}</td>
+                                            <td>{!! $bulletin->description !!}</td>
+                                            <td>{{$bulletin->created_at}}</td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm">EDIT</button>
+                                                <button class="btn btn-danger btn-sm">DELETE</button>
+                                            </td>
                                            
                                         </tr>
-                                       
+                                       @endforeach
                                        
                                     </tbody>
                                 </table>
@@ -230,17 +238,22 @@
           </div>
 
           <!-- Modal body -->
-          <form action="" method="POST">
+          <form action="{{route('bulletin_check')}}" method="POST">
               @csrf
               <div class="modal-body">
                     <div class="form-group">
-                        <label>Title</label>
+                        <label><strong>Title</strong></label>
                         <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Description :</strong></label>
+                        <textarea class="summernote" name="description"></textarea>
                     </div>
               </div>
 
               <!-- Modal footer -->
               <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
               </div>
           </form>
@@ -265,7 +278,16 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+           
+          $('.summernote').summernote();
+        });
+    </script>
 </body>
 
 </html>
