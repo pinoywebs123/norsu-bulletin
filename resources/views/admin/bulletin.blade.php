@@ -54,17 +54,17 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/users')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>USERS</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/category')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>CATEGORY</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/bulletin')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>BULLETIN</span></a>
             </li>
@@ -141,19 +141,18 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <button class="btn btn-primary btn-sm">NEW BULLETIN</button>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createBulletin">NEW BULLETIN</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Title</th>
                                             <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Created</th>
+                                            <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
                                    
@@ -163,17 +162,9 @@
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
                                             <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                           
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
+                                       
                                        
                                     </tbody>
                                 </table>
@@ -226,6 +217,36 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal" id="createBulletin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Bulletin Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <form action="" method="POST">
+              @csrf
+              <div class="modal-body">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+          </form>
+
+        </div>
+      </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
