@@ -238,7 +238,7 @@
           </div>
 
           <!-- Modal body -->
-          <form action="{{route('bulletin_check')}}" method="POST">
+          <form action="{{route('bulletin_check')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                     <div class="form-group">
@@ -246,8 +246,12 @@
                         <input type="text" name="title" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label><strong>Cover Image</strong></label>
+                        <input type="file" name="image" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label><strong>Description :</strong></label>
-                        <textarea class="summernote" name="description"></textarea>
+                        <textarea class="summernote" name="description" required></textarea>
                     </div>
               </div>
 
