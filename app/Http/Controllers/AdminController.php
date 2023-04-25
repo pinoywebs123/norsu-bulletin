@@ -29,7 +29,14 @@ class AdminController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:bulletins|max:255',
             'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+
+        $destinationPath = 'cover';
+        $myimage = $request->image->getClientOriginalName();
+        $request->image->move(public_path($destinationPath), $myimage);
+
+        $validated['image'] = $myimage;
 
         Bulletin::create($validated);
 
