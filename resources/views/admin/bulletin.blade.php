@@ -22,6 +22,10 @@
 
     <!-- Custom styles for this page -->
     <link href="{{URL::to('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
 </head>
 
@@ -54,17 +58,17 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/users')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>USERS</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/category')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>CATEGORY</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/bulletin')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>BULLETIN</span></a>
             </li>
@@ -135,45 +139,40 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">BULLEN LIST</h1>
-                   
+                    <h1 class="h3 mb-2 text-gray-800">BULLETIN LIST</h1>
+                    @include('shared.notification')
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <button class="btn btn-primary btn-sm">NEW BULLETIN</button>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createBulletin">NEW BULLETIN</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Title</th>
                                             <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Created</th>
+                                            <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
+                                        @foreach($all as $bulletin)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{$bulletin->title}}</td>
+                                            <td>{!! $bulletin->description !!}</td>
+                                            <td>{{$bulletin->created_at}}</td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm">EDIT</button>
+                                                <button class="btn btn-danger btn-sm delete" value="{{$bulletin->id}}" data-toggle="modal" data-target="#bulletinDelete">DELETE</button>
+                                            </td>
+                                           
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
+                                       @endforeach
                                        
                                     </tbody>
                                 </table>
@@ -228,6 +227,67 @@
         </div>
     </div>
 
+    <div class="modal" id="createBulletin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Bulletin Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <form action="{{route('category_check')}}" method="POST">
+              @csrf
+              <div class="modal-body">
+                    <div class="form-group">
+                        <label><strong>Title</strong></label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Description :</strong></label>
+                        <textarea class="summernote" name="description"></textarea>
+                    </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="bulletinDelete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Are you sure you want to delete?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+         
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+           <form action="{{route('bulletin_delete')}}" method="POST">
+                @csrf
+                <input type="hidden" name="bulletin_id" id="bulletinHasDelete">
+                <button class="btn btn-primary">YES</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+           </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{URL::to('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -244,7 +304,21 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('.summernote').summernote();
 
+          $(".delete").click(function(){
+                var bulletin_id = $(this).val();
+                $("#bulletinHasDelete").val(bulletin_id);
+
+          });
+        });
+    </script>
 </body>
 
 </html>

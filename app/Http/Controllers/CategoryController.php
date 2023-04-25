@@ -19,27 +19,26 @@ class CategoryController extends Controller
         return view('admin.users');
     }
 
-    public function category()
-    {
-        $categories = Category::all();
-        return view('admin.category', compact('categories'));
-    }
-
     public function new_category()
     {
         return view('admin.form');
     }
+    
+    public function category()
+    {
+        $all = Category::all();
+        return view('admin.category',compact('all'));
+    }
 
     public function check_category(Request $request)
     {
-        $category = new Category;
-        $category->category_name = $request->category_name;
-        $category->save();
-        return 'Category successfully created!';
-    }
+        $validated = $request->validate([
+            'category_name' => 'required|unique:category|max:255',
+        ]);
 
-    public function bulletin()
-    {
-        return view('admin.bulletin');
+        Category::create($validated);
+
+        return back()->with('success','Category Created Successfully!');
+        
     }
 }

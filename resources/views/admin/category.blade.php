@@ -54,17 +54,17 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/users')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>USERS</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/category')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>CATEGORY</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{url('/bulletin')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>BULLETIN</span></a>
             </li>
@@ -141,7 +141,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a href="/new-category" class="btn btn-primary btn-sm">NEW CATEGORY</a>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createBulletin">NEW CATEGORY</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -154,12 +154,7 @@
                                     </thead>
                                    
                                     <tbody>
-                                        @foreach ($categories as $category)
-                                        <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->category_name }}</td>
-                                        </tr>
-                                        @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -212,6 +207,64 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="createBulletin">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">New Category</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+            <!-- Modal body -->
+            <form action="{{ route('category_check') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                      <div class="form-group">
+                          <label><strong>Category Name</strong></label>
+                          <input type="text" name="category_name" class="form-control" required>
+                      </div>
+                </div>
+  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                  <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+  
+      <div class="modal" id="bulletinDelete">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Are you sure you want to delete?</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+           
+  
+            <!-- Modal footer -->
+            <div class="modal-footer">
+             <form action="{{route('bulletin_delete')}}" method="POST">
+                  @csrf
+                  <input type="hidden" name="bulletin_id" id="bulletinHasDelete">
+                  <button class="btn btn-primary">YES</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+             </form>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
