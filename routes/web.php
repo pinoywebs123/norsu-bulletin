@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,4 +14,13 @@ use App\Http\Controllers\FormController;
 |
 */
 
-Route::get('/', [FormController::class, 'index']);
+Route::get('/', [CategoryController::class, 'index']);
+
+Route::get('/user', [CategoryController::class, 'users']);
+
+Route::get('/category', [CategoryController::class, 'category']);
+Route::get('/new-category', [CategoryController::class, 'new_category']);
+Route::post('/check-category', [CategoryController::class, 'check_category']);
+
+
+Route::get('/bulletin', [CategoryController::class, 'bulletin']);
