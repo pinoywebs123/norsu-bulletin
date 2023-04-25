@@ -38,6 +38,8 @@
         }
 
         .card img {
+            min-height: 200px;
+            height: 100%;
             transition: transform 1s;
         }
 
@@ -47,6 +49,7 @@
 
         .card-content {
             position: relative;
+            padding-bottom: 30px;
         }
 
         .card-footer {
@@ -59,6 +62,11 @@
             background-size: cover;
             background-position: center center;
             height: 500px;
+        }
+
+        .image {
+            min-width: 200px;
+            max-height: 200px;
         }
     </style>
 </head>
@@ -103,11 +111,11 @@
                 <div style="background-image: url({{ URL::to('img/cover1.jpg') }});" class="cover w-100"></div>
                 <div class="carousel-caption">
                     <h5>Lorem ipsum dolor.</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
+                    <p>Lorem50  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <div style="background-image: url({{ URL::to('img/cover.jpg') }});" class="cover w-100"></div>
+                <div style="background-image: url({{ URL::to('img/cover2.jpg') }});" class="cover w-100"></div>
                 <div class="carousel-caption">
                     <h5>Lorem ipsum dolor.</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
@@ -127,10 +135,10 @@
 
         <div class="card mb-3">
             <div class="row g-0">
-                <div class="col-md-2 overflow-hidden">
+                <div class="image col-12 col-sm-auto overflow-hidden">
                     <img src="https://picsum.photos/200/200" class="img-fluid rounded-start w-100" alt="...">
                 </div>
-                <div class="card-content col-md-10">
+                <div class="card-content col">
                     <div class="card-body">
                         <h5 class="card-title">News title #1</h5>
                         <p class="card-text">
@@ -147,10 +155,10 @@
 
         <div class="card mb-3">
             <div class="row g-0">
-                <div class="col-md-2 overflow-hidden">
+                <div class="image col-12 col-sm-auto overflow-hidden">
                     <img src="https://picsum.photos/201/201" class="img-fluid rounded-start w-100" alt="...">
                 </div>
-                <div class="card-content col-md-10">
+                <div class="card-content col">
                     <div class="card-body">
                         <h5 class="card-title">News title #2</h5>
                         <p class="card-text">
@@ -167,10 +175,10 @@
 
         <div class="card mb-3">
             <div class="row g-0">
-                <div class="col-md-2 overflow-hidden">
+                <div class="image col-12 col-sm-auto overflow-hidden">
                     <img src="https://picsum.photos/202/202" class="img-fluid rounded-start w-100" alt="...">
                 </div>
-                <div class="card-content col-md-10">
+                <div class="card-content col">
                     <div class="card-body">
                         <h5 class="card-title">News title #3</h5>
                         <p class="card-text">
@@ -186,8 +194,8 @@
         </div>
     </div>
 
-    <div class="container-fluid p-5 bg-dark text-light">
-        <p class="text-center h5">&copy; 2023 NORSU BAIS, All rights reserved</p>
+    <div class="container-fluid p-3 p-sm-5 bg-dark text-light">
+        <span class="d-block text-center small">&copy; 2023 NORSU BAIS, All rights reserved</span>
     </div>
 
     <!-- Bootstrap core JavaScript-->
