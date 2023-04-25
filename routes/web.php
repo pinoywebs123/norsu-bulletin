@@ -15,14 +15,12 @@ use App\Http\Controllers\CategoryController;
 */
 use App\Http\Controllers\AdminController;
 
-
-Route::get('/', [CategoryController::class, 'index']);
-
 Route::get('/user', [CategoryController::class, 'users']);
 
 Route::get('/category', [CategoryController::class, 'category']);
 Route::get('/new-category', [CategoryController::class, 'new_category']);
 Route::post('/check-category', [CategoryController::class, 'check_category'])->name('category_check');
+Route::post('/delete-category', [CategoryController::class, 'category_delete'])->name('category_delete');
 
 
 Route::get('/bulletin', [CategoryController::class, 'bulletin']);

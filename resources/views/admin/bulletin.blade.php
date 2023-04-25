@@ -238,7 +238,7 @@
           </div>
 
           <!-- Modal body -->
-          <form action="{{route('category_check')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('bulletin_check')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                     <div class="form-group">

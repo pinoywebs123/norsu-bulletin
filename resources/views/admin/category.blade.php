@@ -136,7 +136,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">CATEGORY LIST</h1>
-                   
+                    @include('shared.notification')
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -154,7 +154,16 @@
                                     </thead>
                                    
                                     <tbody>
-                                        
+                                        @foreach ($all as $category)
+                                            <tr>
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->category_name }}</td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm">EDIT</button>
+                                                    <button class="btn btn-danger btn-sm delete" value="{{$category->id}}" data-toggle="modal" data-target="#categoryDelete">DELETE</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -230,7 +239,7 @@
   
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -239,7 +248,7 @@
         </div>
       </div>
   
-      <div class="modal" id="bulletinDelete">
+      <div class="modal" id="categoryDelete">
         <div class="modal-dialog">
           <div class="modal-content">
   
@@ -253,9 +262,9 @@
   
             <!-- Modal footer -->
             <div class="modal-footer">
-             <form action="{{route('bulletin_delete')}}" method="POST">
+             <form action="{{route('category_delete')}}" method="POST">
                   @csrf
-                  <input type="hidden" name="bulletin_id" id="bulletinHasDelete">
+                  <input type="hidden" name="category_id" id="categoryHasDelete">
                   <button class="btn btn-primary">YES</button>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
              </form>
@@ -282,6 +291,17 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          
+
+          $(".delete").click(function(){
+                var category_id = $(this).val();
+                $("#categoryHasDelete").val(category_id);
+
+          });
+        });
+    </script>
 
 </body>
 

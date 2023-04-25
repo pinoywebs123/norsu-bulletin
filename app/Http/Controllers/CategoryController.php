@@ -33,12 +33,22 @@ class CategoryController extends Controller
     public function check_category(Request $request)
     {
         $validated = $request->validate([
-            'category_name' => 'required|unique:category|max:255',
+            'category_name' => 'required|unique:categories|max:255',
         ]);
 
         Category::create($validated);
 
         return back()->with('success','Category Created Successfully!');
         
+    }
+
+    public function category_delete(Request $request)
+    {
+        $find = Category::find($request->category_id);
+        if($find)
+        {
+            $find->delete();
+            return back()->with('success','Category Deleted Successfully!');
+        }
     }
 }
