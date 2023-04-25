@@ -168,7 +168,7 @@
                                             <td>{{$bulletin->created_at}}</td>
                                             <td>
                                                 <button class="btn btn-info btn-sm">EDIT</button>
-                                                <button class="btn btn-danger btn-sm">DELETE</button>
+                                                <button class="btn btn-danger btn-sm delete" value="{{$bulletin->id}}" data-toggle="modal" data-target="#bulletinDelete">DELETE</button>
                                             </td>
                                            
                                         </tr>
@@ -262,6 +262,32 @@
       </div>
     </div>
 
+    <div class="modal" id="bulletinDelete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Are you sure you want to delete?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+         
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+           <form action="{{route('bulletin_delete')}}" method="POST">
+                @csrf
+                <input type="hidden" name="bulletin_id" id="bulletinHasDelete">
+                <button class="btn btn-primary">YES</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+           </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{URL::to('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -284,8 +310,13 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-           
           $('.summernote').summernote();
+
+          $(".delete").click(function(){
+                var bulletin_id = $(this).val();
+                $("#bulletinHasDelete").val(bulletin_id);
+
+          });
         });
     </script>
 </body>

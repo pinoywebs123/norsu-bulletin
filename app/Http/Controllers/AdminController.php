@@ -36,4 +36,14 @@ class AdminController extends Controller
         return back()->with('success','Bulletin Created Successfully!');
         
     }
+
+    public function bulletin_delete(Request $request)
+    {
+        $find = Bulletin::find($request->bulletin_id);
+        if($find)
+        {
+            $find->delete();
+            return back()->with('success','Bulletin Deleted Successfully!');
+        }
+    }
 }

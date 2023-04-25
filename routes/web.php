@@ -17,3 +17,4 @@ Route::get('/category', [AdminController::class, 'category']);
 
 Route::get('/bulletin', [AdminController::class, 'bulletin']);
 Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');
+Route::post('/delete-bulletin', [AdminController::class, 'bulletin_delete'])->name('bulletin_delete');
