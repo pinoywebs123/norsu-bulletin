@@ -15,7 +15,9 @@ use App\Http\Controllers\CategoryController;
 */
 use App\Http\Controllers\AdminController;
 
-Route::get('/user', [CategoryController::class, 'users']);
+Route::get('/', function() {
+    return view('home');
+});
 
 Route::get('/category', [CategoryController::class, 'category']);
 Route::get('/new-category', [CategoryController::class, 'new_category']);
