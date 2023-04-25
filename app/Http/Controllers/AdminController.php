@@ -26,6 +26,14 @@ class AdminController extends Controller
 
     public function bulletin_check(Request $request)
     {
-        return $request->all();
+        $validated = $request->validate([
+            'title' => 'required|unique:bulletins|max:255',
+            'description' => 'required',
+        ]);
+
+        Bulletin::create($validated);
+
+        return back()->with('success','Bulletin Created Successfully!');
+        
     }
 }
