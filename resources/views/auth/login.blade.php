@@ -20,6 +20,10 @@
     <!-- Custom styles for this template-->
     <link href="{{URL::to('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <style>
+        html, body {
+            height: 100%;
+        }
+
         .card {
             background-color: transparent;
         }
@@ -32,7 +36,7 @@
     </style>
 </head>
 
-<body class="bg-gradient-warning">
+<body class="bg-gradient-warning d-flex align-items-center">
 
     <div class="container">
 

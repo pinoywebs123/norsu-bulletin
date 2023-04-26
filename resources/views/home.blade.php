@@ -100,7 +100,7 @@
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
                     <a href="{{ route('news') }}" class="nav-link">News</a>
                     <a href="#" class="nav-link">About</a>
-                    <a href="{{ url('/login') }}" class="btn btn-outline-primary px-3">Login</a>ol
+                    <a href="{{ url('/login') }}" class="btn btn-outline-primary px-3">Login</a>
                 </div>
             </div>
         </div>
