@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>NORSU BAIS BULLETIN</title>
+    <title>NORSU BAIS BULLETIN &bullet; Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{URL::to('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,10 +19,20 @@
 
     <!-- Custom styles for this template-->
     <link href="{{URL::to('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    <style>
+        .card {
+            background-color: transparent;
+        }
+        .bg-login-image {
+            background-image: url({{ URL::to('/img/norsu.png') }});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, .5);
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-warning">
 
     <div class="container">
 
@@ -60,13 +70,13 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                       
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+
+                                        <button type="submit" class="btn btn-danger btn-user btn-block">Login</button>
                                         <hr>
-                                       
+
                                     </form>
                                     <hr>
-                                    
+
                                 </div>
                             </div>
                         </div>

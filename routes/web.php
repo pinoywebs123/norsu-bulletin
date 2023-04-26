@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function() {
     return view('home');
-});
+})->name('home');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login-check', [AuthController::class, 'login_check'])->name('login_check');
@@ -27,3 +28,6 @@ Route::get('/users', [AdminController::class, 'users']);
 Route::get('/bulletin', [AdminController::class, 'bulletin']);
 Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');
 Route::post('/delete-bulletin', [AdminController::class, 'bulletin_delete'])->name('bulletin_delete');
+
+Route::get('/news', [Controller::class, 'news'])->name('news');
+Route::get('/news/{id}', [Controller::class, 'show_news'])->name('show_news');

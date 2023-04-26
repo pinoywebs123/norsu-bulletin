@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>NORSU BULLETIN &bullet; HOMEPAGE</title>
+    <title>NORSU BULLETIN &bullet; HOME</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{URL::to('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -25,7 +24,11 @@
 
     <style>
         .navbar {
-            background-color: #F5DA50;
+            background: rgb(253,187,45);
+            background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(245,218,80,1) 100%);
+            box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.75);
+            -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.75);
         }
 
         .navbar-brand img {
@@ -56,6 +59,7 @@
             position: absolute;
             width: 100%;
             bottom: 0;
+            background-color: rgb(238, 206, 40);
         }
 
         .cover {
@@ -68,13 +72,21 @@
             min-width: 200px;
             max-height: 200px;
         }
+
+        #navbar-expand .btn {
+            height: 35px;
+            border: 0;
+            padding-top: 5px;
+            border-radius: 0;
+            margin-top: 2px;
+        }
     </style>
 </head>
 
 <body class="bg-dark">
-    <div class="navbar navbar-expand-md text-light px-3 sticky-top">
+    <div class="navbar navbar-expand-sm text-light px-3 sticky-top">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand">
+            <a href="{{ route('home') }}" class="navbar-brand">
                 <img src="{{URL::to('img/norsu.png')}}">
                 <span class="d-inline-block align-text-middle">NORSU BULLETIN</span>
             </a>
@@ -83,11 +95,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div id="navbar-expand" class="collapse navbar-collapse">
+            <div id="navbar-expand" class="collapse navbar-collapse justify-content-end">
                 <div class="navbar-nav">
-                    <a href="#" class="nav-link">Home</a>
-                    <a href="#" class="nav-link">News</a>
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="{{ route('news') }}" class="nav-link">News</a>
                     <a href="#" class="nav-link">About</a>
+                    <a href="{{ url('/login') }}" class="btn btn-outline-primary px-3">Login</a>ol
                 </div>
             </div>
         </div>
@@ -143,7 +156,7 @@
                         <h5 class="card-title">News title #1</h5>
                         <p class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="#" class="text-decoration-none">Read more</a></span>
+                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -163,7 +176,7 @@
                         <h5 class="card-title">News title #2</h5>
                         <p class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="#" class="text-decoration-none">Read more</a></span>
+                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -183,7 +196,7 @@
                         <h5 class="card-title">News title #3</h5>
                         <p class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="#" class="text-decoration-none">Read more</a></span>
+                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -192,9 +205,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="text-center">
+            <a href="{{ route('news') }}" class="btn btn-lg btn-warning">View all news</a>
+        </div>
     </div>
 
-    <div class="container-fluid p-3 p-sm-5 bg-dark text-light">
+    <div class="container-fluid p-3 p-sm-5 bg-gradient-dark text-light">
         <span class="d-block text-center small">&copy; 2023 NORSU BAIS, All rights reserved</span>
     </div>
 
