@@ -14,12 +14,12 @@ use App\Http\Controllers\AuthController;
 // Route::get('/users', [UsersController::class, 'users']);
 // Route::post('/user', [UsersController::class, 'users_check'])->name('users_check');
 
-// Route::get('/', [AuthController::class, 'home'])->name('home');
+Route::get('/', [AuthController::class, 'home'])->name('home');
 
-// Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-// Route::get('/login', [AuthController::class, 'login'])->name('login');
-// Route::post('/login-check', [AuthController::class, 'login_check'])->name('login_check');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login-check', [AuthController::class, 'login_check'])->name('login_check');
 
 // Route::get('/category', [CategoryController::class, 'category']);
 // Route::get('/new-category', [CategoryController::class, 'new_category']);
