@@ -7,12 +7,6 @@ use App\Models\Bulletin;
 
 class AdminController extends Controller
 {
-    
-    public function users()
-    {
-        return view('admin.users');
-    }
-
     public function category()
     {
         return view('admin.category');

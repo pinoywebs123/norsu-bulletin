@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,18 +17,20 @@ use App\Http\Controllers\CategoryController;
 */
 use App\Http\Controllers\AdminController;
 
-Route::get('/user', [CategoryController::class, 'users']);
+//Users
+
+Route::get('/users', [UsersController::class, 'users']);
+Route::post('/user', [UsersController::class, 'users_check'])->name('users_check');
+
+//Category
 
 Route::get('/category', [CategoryController::class, 'category']);
 Route::get('/new-category', [CategoryController::class, 'new_category']);
 Route::post('/check-category', [CategoryController::class, 'check_category'])->name('category_check');
 Route::post('/delete-category', [CategoryController::class, 'category_delete'])->name('category_delete');
-
-
 Route::get('/bulletin', [CategoryController::class, 'bulletin']);
 
-
-Route::get('/users', [AdminController::class, 'users']);
+//Bulletin
 
 Route::get('/bulletin', [AdminController::class, 'bulletin']);
 Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');
