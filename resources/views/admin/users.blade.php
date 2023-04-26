@@ -312,6 +312,17 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          
+
+          $(".delete").click(function(){
+                var users_id = $(this).val();
+
+                $("#usersHasDelete").val(users_id);
+          });
+        });
+    </script>
 
 </body>
 

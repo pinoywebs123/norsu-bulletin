@@ -59,13 +59,6 @@
             padding-bottom: 30px;
         }
 
-        .card-footer {
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-            background-color: rgb(238, 206, 40);
-        }
-
         .cover {
             background-size: cover;
             background-position: center center;
@@ -80,33 +73,28 @@
             margin-top: 2px;
         }
 
-<<<<<<< HEAD
-        .social-btn-sp #social-links {
-                margin: 0 auto;
-                max-width: 500px;
-            }
-            .social-btn-sp #social-links ul li {
-                display: inline-block;
-            }          
-            .social-btn-sp #social-links ul li a {
-                padding: 15px;
-                border: 1px solid #ccc;
-                margin: 1px;
-                font-size: 30px;
-            }
-            table #social-links{
-                display: inline-table;
-            }
-            table #social-links ul li{
-                display: inline;
-            }
-            table #social-links ul li a{
-                padding: 5px;
-                border: 1px solid #ccc;
-                margin: 1px;
-                font-size: 15px;
-                background: #e3e3ea;
-            }
+        .card-footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            background-color: rgb(238, 206, 40);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sharer {
+            height: 30px;
+        }
+
+        .sharer ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .sharer li {
+            margin-right: 10px;
+        }
+
         @media (min-width:576px) {
             .card .image img {
                 max-height: 30vh;
@@ -177,7 +165,7 @@
 
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">Latest news</h1>
-        
+
         @foreach($bulletins as $bull)
         <div class="card mb-3">
             <div class="row g-0">
@@ -190,11 +178,21 @@
                         <p class="card-text">
                             {!! $bull->description !!}
                             <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
-                            {!! Share::page(route('show_news', $bull->id))->facebook()->twitter() !!}
                         </p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
+                        <span class="card-text">
+                            <small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small>
+                        </span>
+
+                        <div class="sharer">
+                            <div id="social-links">
+                                <ul>
+                                    <li><a href="{{ Share::page(route('show_news', $bull->id))->facebook()->getRawLinks()['facebook'] }}" class="social-button text-decoration-none"><span class="fab fa-facebook"></span> Share</a></li>
+                                    <li><a href="{{ Share::page(route('show_news', $bull->id))->twitter()->getRawLinks()['twitter'] }}" class="social-button text-decoration-none"><span class="fab fa-twitter"></span> Tweet</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
