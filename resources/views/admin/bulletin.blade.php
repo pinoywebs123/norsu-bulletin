@@ -246,6 +246,15 @@
                         <input type="text" name="title" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label>Select Category</label>
+                        <select class="form-control" name="category_id" required>
+                            <option></option>
+                            @foreach($categories as $cat)
+                            <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label><strong>Cover Image</strong></label>
                         <input type="file" name="image" class="form-control" required>
                     </div>

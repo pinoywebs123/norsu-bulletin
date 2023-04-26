@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bulletin;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,8 @@ class AdminController extends Controller
     public function bulletin()
     {
         $all = Bulletin::all();
-        return view('admin.bulletin',compact('all'));
+        $categories = Category::all();
+        return view('admin.bulletin',compact('all','categories'));
     }
 
     public function bulletin_check(Request $request)
@@ -24,6 +26,7 @@ class AdminController extends Controller
             'title' => 'required|unique:bulletins|max:255',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'category_id'   => 'required'
         ]);
 
         $destinationPath = 'cover';
