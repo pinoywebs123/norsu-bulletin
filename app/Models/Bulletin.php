@@ -10,4 +10,9 @@ class Bulletin extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
