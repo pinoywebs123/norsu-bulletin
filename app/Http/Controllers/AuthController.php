@@ -11,8 +11,18 @@ class AuthController extends Controller
 
     public function home()
     {
+        $shareButtons = \Share::page(
+            'https://www.itsolutionstuff.com',
+            'Your share text comes here',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
         $bulletins = Bulletin::latest()->limit(3)->get();
-         return view('home',compact('bulletins'));
+         return view('home',compact('bulletins','shareButtons'));
     }
     public function login()
     {

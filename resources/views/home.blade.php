@@ -80,6 +80,33 @@
             border-radius: 0;
             margin-top: 2px;
         }
+
+        .social-btn-sp #social-links {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+            .social-btn-sp #social-links ul li {
+                display: inline-block;
+            }          
+            .social-btn-sp #social-links ul li a {
+                padding: 15px;
+                border: 1px solid #ccc;
+                margin: 1px;
+                font-size: 30px;
+            }
+            table #social-links{
+                display: inline-table;
+            }
+            table #social-links ul li{
+                display: inline;
+            }
+            table #social-links ul li a{
+                padding: 5px;
+                border: 1px solid #ccc;
+                margin: 1px;
+                font-size: 15px;
+                background: #e3e3ea;
+            }
     </style>
 </head>
 
@@ -145,7 +172,7 @@
 
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">Latest news</h1>
-
+        
         @foreach($bulletins as $bull)
         <div class="card mb-3">
             <div class="row g-0">
@@ -158,6 +185,7 @@
                         <p class="card-text">
                             {!! $bull->description !!}
                             <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
+                            {!! Share::page(route('show_news', $bull->id))->facebook()->twitter() !!}
                         </p>
                     </div>
                     <div class="card-footer">
