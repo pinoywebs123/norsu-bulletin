@@ -34,11 +34,12 @@ class UsersController extends Controller
 
     public function users_delete(Request $request)
     {
-        $find = User::find($request->id);
+        $find = User::find($request->users_id);
+        
         if($find)
         {
             $find->delete();
-            return back()->with('success','User Deleted Successfully!');
+            return back()->with('success','Users Deleted Successfully!');
         }
     }
 }
