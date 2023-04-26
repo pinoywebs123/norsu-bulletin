@@ -26,7 +26,7 @@ Route::get('/category', [CategoryController::class, 'category']);
 Route::get('/new-category', [CategoryController::class, 'new_category']);
 Route::post('/check-category', [CategoryController::class, 'check_category'])->name('category_check');
 Route::post('/delete-category', [CategoryController::class, 'category_delete'])->name('category_delete');
-
+Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
 Route::get('/bulletin', [AdminController::class, 'bulletin'])->name('bulletin');
 

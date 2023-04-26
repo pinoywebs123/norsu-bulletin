@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bulletin;
 use App\Models\Category;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -49,5 +50,11 @@ class AdminController extends Controller
             $find->delete();
             return back()->with('success','Bulletin Deleted Successfully!');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }
