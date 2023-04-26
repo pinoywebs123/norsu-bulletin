@@ -55,10 +55,6 @@
             padding-bottom: 30px;
         }
 
-        .card-text {
-            text-indent: 30px;
-        }
-
         .card-footer {
             position: absolute;
             width: 100%;
@@ -74,6 +70,7 @@
 
         .image {
             min-width: 200px;
+            max-height: 200px;
         }
 
         #navbar-expand .btn {
@@ -98,7 +95,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div id="navbar-expand" class="collapse navbar-collapse justify-content-end">
+            <div id="navbar-expand" class="collapse navbar-collapse justify-content-center justify-content-md-end text-center">
                 <div class="navbar-nav">
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
                     <a href="{{ route('news') }}" class="nav-link">News</a>

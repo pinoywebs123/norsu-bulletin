@@ -95,7 +95,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div id="navbar-expand" class="collapse navbar-collapse justify-content-end">
+            <div id="navbar-expand" class="collapse navbar-collapse justify-content-center justify-content-md-end text-center">
                 <div class="navbar-nav">
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
                     <a href="{{ route('news') }}" class="nav-link">News</a>
