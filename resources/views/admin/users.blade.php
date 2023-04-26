@@ -163,8 +163,11 @@
                                             <td>{{ $user->last_name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm">EDIT</button>
+                                                <button class="btn btn-danger btn-sm delete" value="{{$user->id}}" data-toggle="modal" data-target="#usersDelete">DELETE</button>
+                                            </td>
                                         </tr>
-                                            
                                         @endforeach
                                        
                                     </tbody>
@@ -262,6 +265,32 @@
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </form>
+  
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="usersDelete">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Are you sure you want to delete?</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+           
+  
+            <!-- Modal footer -->
+            <div class="modal-footer">
+             <form action="{{route('users_delete')}}" method="POST">
+                  @csrf
+                  <input type="hidden" name="users_id" id="usersHasDelete">
+                  <button class="btn btn-primary">YES</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+             </form>
+            </div>
   
           </div>
         </div>
