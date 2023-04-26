@@ -14,9 +14,6 @@ use App\Http\Controllers\AuthController;
 Route::get('/users', [UsersController::class, 'users']);
 Route::post('/user', [UsersController::class, 'users_check'])->name('users_check');
 
-//Category
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
 
 Route::get('/', [AuthController::class, 'home'])->name('home');
 
