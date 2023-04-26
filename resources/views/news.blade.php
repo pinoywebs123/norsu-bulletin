@@ -64,6 +64,21 @@
             width: 100%;
             bottom: 0;
             background-color: rgb(238, 206, 40);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sharer {
+            height: 30px;
+        }
+
+        .sharer ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .sharer li {
+            margin-right: 10px;
         }
 
         .cover {
@@ -128,11 +143,21 @@
                             <p class="card-text">
                                 {!! $bull->description !!}
                                 <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
-                                {!! Share::page(route('show_news', $bull->id))->facebook()->twitter() !!}
                             </p>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
+                            <span class="card-text">
+                                <small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small>
+                            </span>
+
+                            <div class="sharer">
+                                <div id="social-links">
+                                    <ul>
+                                        <li><a href="{{ Share::page(route('show_news', $bull->id))->facebook()->getRawLinks()['facebook'] }}" class="social-button text-decoration-none"><span class="fab fa-facebook"></span> Share</a></li>
+                                        <li><a href="{{ Share::page(route('show_news', $bull->id))->twitter()->getRawLinks()['twitter'] }}" class="social-button text-decoration-none"><span class="fab fa-twitter"></span> Tweet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
