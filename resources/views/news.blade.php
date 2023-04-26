@@ -40,13 +40,17 @@
             margin-top: 12px;
         }
 
-        .card img {
-            min-height: 200px;
-            height: 100%;
+        .image {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .card .image img {
+            margin: 0 auto;
             transition: transform 1s;
         }
 
-        .card img:hover {
+        .card .image img:hover {
             transform: scale(1.25);
         }
 
@@ -68,17 +72,18 @@
             height: 500px;
         }
 
-        .image {
-            min-width: 200px;
-            max-height: 200px;
-        }
-
         #navbar-expand .btn {
             height: 35px;
             border: 0;
             padding-top: 5px;
             border-radius: 0;
             margin-top: 2px;
+        }
+
+        @media (min-width:576px) {
+            .card .image img {
+                max-height: 30vh;
+            }
         }
     </style>
 </head>
@@ -109,30 +114,29 @@
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">News and Announcements</h1>
 
-       @foreach($bulletins as $bull)
+        {{ $bulletins->links() }}
 
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="{{URL::to('cover')}}/{{$bull->image}}" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$bull->title}}</h5>
-                        <p class="card-text">
-                           {!! $bull->description !!}
-                            <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
+        @foreach($bulletins as $bull)
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="image col-12 col-sm-3 d-flex align-items-center">
+                        <img src="{{URL::to('cover')}}/{{$bull->image}}" class="img-fluid rounded-start w-100" alt="...">
                     </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
+                    <div class="card-content col-12 col-sm-9">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$bull->title}}</h5>
+                            <p class="card-text">
+                                {!! $bull->description !!}
+                                <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
         @endforeach
-       
 
         {{ $bulletins->links() }}
     </div>

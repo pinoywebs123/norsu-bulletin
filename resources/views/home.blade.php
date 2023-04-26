@@ -40,13 +40,17 @@
             margin-top: 12px;
         }
 
-        .card img {
-            min-height: 200px;
-            height: 100%;
+        .image {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .card .image img {
+            margin: 0 auto;
             transition: transform 1s;
         }
 
-        .card img:hover {
+        .card .image img:hover {
             transform: scale(1.25);
         }
 
@@ -68,11 +72,6 @@
             height: 500px;
         }
 
-        .image {
-            min-width: 200px;
-            max-height: 200px;
-        }
-
         #navbar-expand .btn {
             height: 35px;
             border: 0;
@@ -81,6 +80,7 @@
             margin-top: 2px;
         }
 
+<<<<<<< HEAD
         .social-btn-sp #social-links {
                 margin: 0 auto;
                 max-width: 500px;
@@ -107,6 +107,11 @@
                 font-size: 15px;
                 background: #e3e3ea;
             }
+        @media (min-width:576px) {
+            .card .image img {
+                max-height: 30vh;
+            }
+        }
     </style>
 </head>
 
@@ -176,10 +181,10 @@
         @foreach($bulletins as $bull)
         <div class="card mb-3">
             <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
+                <div class="image col-12 col-sm-3 d-flex align-items-center">
                     <img src="{{URL::to('cover')}}/{{$bull->image}}" class="img-fluid rounded-start w-100" alt="...">
                 </div>
-                <div class="card-content col">
+                <div class="card-content col-12 col-sm-9">
                     <div class="card-body">
                         <h5 class="card-title">{{$bull->title}}</h5>
                         <p class="card-text">

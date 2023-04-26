@@ -9,16 +9,6 @@ use PhpParser\Node\Expr\FuncCall;
 
 class CategoryController extends Controller
 {
-    public function index()
-    {
-        return view('index');
-    }
-    
-    public function users()
-    {
-        return view('admin.users');
-    }
-
     public function new_category()
     {
         return view('admin.form');

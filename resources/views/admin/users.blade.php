@@ -136,44 +136,36 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">USER LIST</h1>
+                    @include('shared.notification')
                    
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <button class="btn btn-primary btn-sm">NEW USERS</button>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createUsers">NEW USERS</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
+                                        @foreach ($all as $user)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{ $user->first_name }}</td>
+                                            <td>{{ $user->last_name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->phone }}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
+                                            
+                                        @endforeach
                                        
                                     </tbody>
                                 </table>
@@ -227,6 +219,53 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="createUsers">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Users Information</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+            <!-- Modal body -->
+            <form action="{{route('users_check')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                      <div class="form-group">
+                          <label><strong>First name</strong></label>
+                          <input type="text" name="first_name" class="form-control" required>
+                      </div>
+                      <div class="form-group">
+                        <label><strong>Last name</strong></label>
+                        <input type="text" name="last_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Email</strong></label>
+                        <input type="text" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Phone</strong></label>
+                        <input type="text" name="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Password</strong></label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
