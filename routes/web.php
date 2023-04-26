@@ -37,9 +37,13 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::post('/delete-category', [CategoryController::class, 'category_delete'])->name('category_delete');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
-    Route::get('/bulletin', [AdminController::class, 'bulletin'])->name('bulletin');
+    
 
-    Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');
+   
     Route::post('/delete-bulletin', [AdminController::class, 'bulletin_delete'])->name('bulletin_delete');
 
 });
+Route::get('/bulletin', [AdminController::class, 'bulletin'])->name('bulletin');
+Route::post('/bulletin', [AdminController::class, 'bulletin_check'])->name('bulletin_check');
+Route::post('/find-bulletin', [AdminController::class, 'find_bulletin'])->name('find_bulletin');
+Route::post('/update-bulletin', [AdminController::class, 'update_bulletin'])->name('update_bulletin');

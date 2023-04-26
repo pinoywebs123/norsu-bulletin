@@ -167,7 +167,7 @@
                                             <td>{!! $bulletin->description !!}</td>
                                             <td>{{$bulletin->created_at}}</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm">EDIT</button>
+                                                <button class="btn btn-info btn-sm edit" value="{{$bulletin->id}}" data-toggle="modal" data-target="#updateBulletin">EDIT</button>
                                                 <button class="btn btn-danger btn-sm delete" value="{{$bulletin->id}}" data-toggle="modal" data-target="#bulletinDelete">DELETE</button>
                                             </td>
                                            
@@ -275,6 +275,52 @@
       </div>
     </div>
 
+    <div class="modal" id="updateBulletin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Bulletin Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <form action="{{route('update_bulletin')}}" method="POST">
+              @csrf
+              <div class="modal-body">
+                <input type="hidden" name="bulletin_id" id="editBulletinId">
+                    <div class="form-group">
+                        <label><strong>Title</strong></label>
+                        <input type="text" name="title" class="form-control" id="bulletinTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Category</label>
+                        <select class="form-control" name="category_id" id="bulletinCategory" required>
+                            <option></option>
+                            @foreach($categories as $cat)
+                            <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label><strong>Description :</strong></label>
+                        <textarea class="summernote" name="description" id="bulletinDescription" required></textarea>
+                    </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
     <div class="modal" id="bulletinDelete">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -323,6 +369,8 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            var find_bulletin_route = '{{route("find_bulletin")}}';
+            var token = '{{Session::token()}}';
           $('.summernote').summernote();
 
           $(".delete").click(function(){
@@ -330,6 +378,25 @@
                 $("#bulletinHasDelete").val(bulletin_id);
 
           });
+
+          $(".edit").click(function(){
+                var bulletin_id = $(this).val();
+                $("#editBulletinId").val(bulletin_id);
+                $.ajax({
+                   type:'POST',
+                   url:find_bulletin_route,
+                   data:{_token: token, bulletin_id: bulletin_id},
+                   success:function(data) {
+                      console.log(data);
+                      $("#bulletinTitle").val(data.title);
+                      $("#bulletinDescription").val(data.description);
+                      $("#bulletinCategory").val(data.category_id);
+                   }
+                });
+
+
+          });
+
         });
     </script>
 </body>

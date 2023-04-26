@@ -57,4 +57,34 @@ class AdminController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function find_bulletin(Request $request)
+    {
+        $find = Bulletin::find($request->bulletin_id);
+        if($find)
+        {
+            return response()->json( $find );
+        }
+    }
+
+    public function update_bulletin(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'category_id'   => 'required',
+            'bulletin_id'   => 'required'
+        ]);
+        
+
+       
+        
+        $find = Bulletin::find($validated['bulletin_id']);
+        if($find)
+        {
+            unset($validated['bulletin_id']);
+            $find->update($validated);
+            return back()->with('success','Bulletin Updated Successfully!');
+        }
+    }
 }
