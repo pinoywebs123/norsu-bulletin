@@ -7,9 +7,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function() {
-    return view('home');
-})->name('home');
+Route::get('/', [AuthController::class, 'home'])->name('home');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login-check', [AuthController::class, 'login_check'])->name('login_check');

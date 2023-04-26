@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Models\Bulletin;
 
 class Controller extends BaseController
 {
@@ -15,9 +16,9 @@ class Controller extends BaseController
     public function news()
     {
         // sample pagination only
-        $category = Category::paginate(1);
+        $bulletins = Bulletin::latest()->paginate(10);
 
-        return view('news', compact('category'));
+        return view('news', compact('bulletins'));
     }
 
     public function show_news($id)

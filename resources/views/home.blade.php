@@ -146,65 +146,27 @@
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">Latest news</h1>
 
+        @foreach($bulletins as $bull)
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/200/200" class="img-fluid rounded-start w-100" alt="...">
+                    <img src="{{URL::to('cover')}}/{{$bull->image}}" class="img-fluid rounded-start w-100" alt="...">
                 </div>
                 <div class="card-content col">
                     <div class="card-body">
-                        <h5 class="card-title">News title #1</h5>
+                        <h5 class="card-title">{{$bull->title}}</h5>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
+                            {!! $bull->description !!}
+                            <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
                         </p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/201/201" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #2</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/202/202" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #3</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
         <div class="text-center">
             <a href="{{ route('news') }}" class="btn btn-lg btn-warning">View all news</a>

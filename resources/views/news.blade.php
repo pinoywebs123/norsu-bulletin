@@ -109,209 +109,32 @@
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">News and Announcements</h1>
 
-        {{ $category->links() }}
+       @foreach($bulletins as $bull)
 
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/199/199" class="img-fluid rounded-start w-100" alt="...">
+                    <img src="{{URL::to('cover')}}/{{$bull->image}}" class="img-fluid rounded-start w-100" alt="...">
                 </div>
                 <div class="card-content col">
                     <div class="card-body">
-                        <h5 class="card-title">News title #1</h5>
+                        <h5 class="card-title">{{$bull->title}}</h5>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
+                           {!! $bull->description !!}
+                            <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
                         </p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$bull->created_at->toDayDateTimeString()}}</small></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/200/200" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #2</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
+       
 
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/201/201" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #3</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/202/202" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #4</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/203/203" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #5</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/204/204" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #6</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/205/205" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #7</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/206/206" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #8</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/207/207" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #9</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="image col-12 col-sm-auto overflow-hidden">
-                    <img src="https://picsum.photos/208/208" class="img-fluid rounded-start w-100" alt="...">
-                </div>
-                <div class="card-content col">
-                    <div class="card-body">
-                        <h5 class="card-title">News title #10</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid excepturi fugit molestiae natus officia officiis placeat possimus quisquam rem sit?
-                            <span><a href="{{ route('show_news', 1) }}" class="text-decoration-none">Read more</a></span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{ $category->links() }}
+        {{ $bulletins->links() }}
     </div>
 
     <div class="container-fluid p-3 p-sm-5 bg-gradient-dark text-light">
