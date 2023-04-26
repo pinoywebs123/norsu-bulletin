@@ -128,6 +128,7 @@
                             <p class="card-text">
                                 {!! $bull->description !!}
                                 <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
+                                {!! Share::page(route('show_news', $bull->id))->facebook()->twitter() !!}
                             </p>
                         </div>
                         <div class="card-footer">

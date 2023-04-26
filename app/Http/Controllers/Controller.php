@@ -17,8 +17,18 @@ class Controller extends BaseController
     {
         // sample pagination only
         $bulletins = Bulletin::latest()->paginate(10);
+        $shareButtons = \Share::page(
+            'https://www.itsolutionstuff.com',
+            'Your share text comes here',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
 
-        return view('news', compact('bulletins'));
+        return view('news', compact('bulletins','shareButtons'));
     }
 
     public function show_news($id)
