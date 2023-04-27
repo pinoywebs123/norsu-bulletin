@@ -113,7 +113,7 @@
 
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">{{$find->title}}</h1>
-
+        <span>{{$bull->category->category_name}}</span>
 
         <div class="card mb-3">
             <div class="card-content">

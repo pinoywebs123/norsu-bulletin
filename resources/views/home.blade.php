@@ -179,6 +179,7 @@
                 <div class="card-content col-12 col-sm-9">
                     <div class="card-body">
                         <h5 class="card-title">{{$bull->title}}</h5>
+                        <span>{{$bull->category->category_name}}</span>
                         <p class="card-text">
                              {{ mb_strimwidth(strip_tags($bull->description,), 0, 150, '...') }}
 
