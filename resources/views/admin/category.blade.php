@@ -160,7 +160,7 @@
                                                 <td>{{ $category->id }}</td>
                                                 <td>{{ $category->category_name }}</td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm">EDIT</button>
+                                                    <button class="btn btn-info btn-sm edit" value="{{$category->id}}" data-toggle="modal" data-target="#editBulletin">EDIT</button>
                                                     <button class="btn btn-danger btn-sm delete" value="{{$category->id}}" data-toggle="modal" data-target="#categoryDelete">DELETE</button>
                                                 </td>
                                             </tr>
@@ -274,6 +274,38 @@
           </div>
         </div>
       </div>
+
+       <div class="modal" id="editBulletin">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Category</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+            <!-- Modal body -->
+            <form action="{{ route('update_category') }}" method="POST">
+                @csrf
+                <input type="hidden" name="category_id" id="deleteCategory">
+                <div class="modal-body">
+                      <div class="form-group">
+                          <label><strong>Category Name</strong></label>
+                          <input type="text" name="category_name" class="form-control" required id="categoryName">
+                      </div>
+                </div>
+  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
   
 
     <!-- Bootstrap core JavaScript-->
@@ -294,13 +326,34 @@
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-          
+          var find_category_route = '{{route("find_category")}}';
+          var token = '{{Session::token()}}';
 
           $(".delete").click(function(){
                 var category_id = $(this).val();
                 $("#categoryHasDelete").val(category_id);
 
           });
+
+           $(".edit").click(function(){
+                var category_id = $(this).val();
+                $("#deleteCategory").val(category_id);
+
+                $.ajax({
+                   type:'POST',
+                   url:find_category_route,
+                   data:{_token: token, category_id: category_id},
+                   success:function(data) {
+                      console.log(data);
+                      $("#categoryName").val(data.category_name);
+                      
+                   }
+                });
+
+
+          });
+
+
         });
     </script>
 

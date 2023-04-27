@@ -50,6 +50,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::post('/check-category', [CategoryController::class, 'check_category'])->name('category_check');
     Route::post('/delete-category', [CategoryController::class, 'category_delete'])->name('category_delete');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+    Route::post('/find-category', [CategoryController::class, 'find_category'])->name('find_category');
+    Route::post('/update-category', [CategoryController::class, 'update_category'])->name('update_category');
 
     
 

@@ -41,4 +41,19 @@ class CategoryController extends Controller
             return back()->with('success','Category Deleted Successfully!');
         }
     }
+
+    public function find_category(Request $request)
+    {
+        return response()->json(Category::find($request->category_id));
+    }
+
+    public function update_category(Request $request)
+    {
+        $find = Category::find($request->category_id);
+        if($find)
+        {
+            $find->update(['category_name'=> $request->category_name]);
+            return back()->with('success','Category Updated Successfully!');
+        }
+    }
 }
