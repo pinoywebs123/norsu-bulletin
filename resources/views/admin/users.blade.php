@@ -55,17 +55,17 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('/users')}}">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>USERS</span></a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{url('/category')}}">
-                    <i class="fa fa-window-restore"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>CATEGORY</span></a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{url('/bulletin')}}">
-                    <i class="fa fa-envelope-open"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>BULLETIN</span></a>
             </li>
 
@@ -165,7 +165,7 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm">EDIT</button>
+                                                <button class="btn btn-info btn-sm edit" value="{{$user->id}}" data-toggle="modal" data-target="#updateUsers">EDIT</button>
                                                 <button class="btn btn-danger btn-sm delete" value="{{$user->id}}" data-toggle="modal" data-target="#usersDelete">DELETE</button>
                                             </td>
                                         </tr>
@@ -248,7 +248,7 @@
                     </div>
                     <div class="form-group">
                         <label><strong>Email</strong></label>
-                        <input type="text" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label><strong>Phone</strong></label>
@@ -257,6 +257,50 @@
                     <div class="form-group">
                         <label><strong>Password</strong></label>
                         <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="updateUsers">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Users Information</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+  
+            <!-- Modal body -->
+            <form action="{{route('users_update')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="user_id" id="usersHasEdit">
+                <div class="modal-body">
+                      <div class="form-group">
+                          <label><strong>First name</strong></label>
+                          <input type="text" name="first_name" id="first_name" class="form-control" required>
+                      </div>
+                      <div class="form-group">
+                        <label><strong>Last name</strong></label>
+                        <input type="text" name="last_name" id="last_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Email</strong></label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Phone</strong></label>
+                        <input type="text" name="phone" id="phone" class="form-control" required>
                     </div>
                 </div>
   
@@ -315,6 +359,8 @@
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            var find_user_route = '{{route("users_find")}}';
+            var token = '{{Session::token()}}';
           
 
           $(".delete").click(function(){
@@ -322,6 +368,27 @@
 
                 $("#usersHasDelete").val(users_id);
           });
+
+          $(".edit").click(function(){
+                var users_id = $(this).val();
+
+                $("#usersHasEdit").val(users_id);
+
+                $.ajax({
+                   type:'POST',
+                   url:find_user_route,
+                   data:{_token: token, users_id: users_id},
+                   success:function(data) {
+                      console.log(data);
+                      $("#first_name").val(data.first_name);
+                      $("#last_name").val(data.last_name);
+                      $("#email").val(data.email);
+                      $("#phone").val(data.phone);
+                      
+                   }
+                });
+          });
+
         });
     </script>
 

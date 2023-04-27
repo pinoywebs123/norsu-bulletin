@@ -44,6 +44,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::get('/users', [UsersController::class, 'users']);
     Route::post('/user', [UsersController::class, 'users_check'])->name('users_check');
     Route::post('/delete-user', [UsersController::class, 'users_delete'])->name('users_delete');
+    Route::post('/find-user', [UsersController::class, 'users_find'])->name('users_find');
+    Route::post('/update-user', [UsersController::class, 'users_update'])->name('users_update');
 
     Route::get('/category', [CategoryController::class, 'category']);
     Route::get('/new-category', [CategoryController::class, 'new_category']);

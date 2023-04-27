@@ -42,4 +42,26 @@ class UsersController extends Controller
             return back()->with('success','Users Deleted Successfully!');
         }
     }
+
+    public function users_find(Request $request)
+    {
+        return response()->json(User::find($request->users_id));
+    }
+
+    public function users_update(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|max:255',
+        ]);
+
+        $find = User::find($request->user_id);
+        if($find)
+        {
+            $find->update($validated);
+            return back()->with('success','User Updated Successfully!');
+        }
+    }
 }
