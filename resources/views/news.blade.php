@@ -141,7 +141,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$bull->title}}</h5>
                             <p class="card-text">
-                                {!! $bull->description !!}
+                               
+                                {!! substr($bull->description, 0, 500) !!}
                                 <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
                             </p>
                         </div>
