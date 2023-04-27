@@ -99,6 +99,10 @@
             text-shadow: 1px 1px #333;
         }
 
+        .category {
+            font-size: 8px;
+        }
+
         @media (min-width:576px) {
             .card .image img {
                 max-height: 30vh;
@@ -148,7 +152,7 @@
                 <div style="background-image: url({{ URL::to('img/cover1.jpg') }});" class="cover w-100"></div>
                 <div class="carousel-caption">
                     <h5>Lorem ipsum dolor.</h5>
-                    <p>Lorem50  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -179,7 +183,9 @@
                 <div class="card-content col-12 col-sm-9">
                     <div class="card-body">
                         <h5 class="card-title">{{$bull->title}}</h5>
-                        <span>{{$bull->category->category_name}}</span>
+
+                        <span class="category rounded-pill btn btn-sm btn-outline-secondary mb-3">{{$bull->category->category_name}}</span>
+
                         <p class="card-text">
                              {{ mb_strimwidth(strip_tags($bull->description,), 0, 150, '...') }}
 

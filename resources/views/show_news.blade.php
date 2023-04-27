@@ -85,6 +85,10 @@
             border-radius: 0;
             margin-top: 2px;
         }
+
+        .category {
+            font-size: 8px;
+        }
     </style>
 </head>
 
@@ -113,7 +117,7 @@
 
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">{{$find->title}}</h1>
-        <span>{{$bull->category->category_name}}</span>
+        <p>Categories: <span class="category rounded-pill btn btn-sm btn-outline-secondary">{{$find->category->category_name}}</span></p>
 
         <div class="card mb-3">
             <div class="card-content">
