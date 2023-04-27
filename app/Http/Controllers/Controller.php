@@ -33,6 +33,7 @@ class Controller extends BaseController
 
     public function show_news($id)
     {
-        return view('show_news');
+        $find = Bulletin::find($id);
+        return view('show_news',compact('find'));
     }
 }

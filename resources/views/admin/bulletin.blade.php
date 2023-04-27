@@ -57,19 +57,19 @@
           
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{url('/users')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fa fa-user-circle"></i>
                     <span>USERS</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{url('/category')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fa fa-window-restore"></i>
                     <span>CATEGORY</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('/bulletin')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fa fa-envelope-open"></i>
                     <span>BULLETIN</span></a>
             </li>
 

@@ -107,27 +107,25 @@
     </div>
 
     <div class="container-fluid p-3 border bg-gradient-light">
-        <h1 class="text-center">News title #1</h1>
+        <h1 class="text-center">{{$find->title}}</h1>
 
 
         <div class="card mb-3">
             <div class="card-content">
                 <div class="card-header">
                     <div class="image overflow-hidden">
-                        <img src="https://picsum.photos/500/200" class="img-fluid rounded-start w-100" alt="...">
+                        <img src="{{URL::to('cover')}}/{{$find->image}}" class="img-fluid rounded-start w-100" alt="...">
                     </div>
                 </div>
                 <div class="card-body p-5 inden">
                     <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iusto pariatur quae quibusdam, recusandae sint tempore! Aliquid amet animi autem consectetur corporis deserunt distinctio dolorum earum eligendi enim est eum fugiat harum impedit ipsam iste iusto laboriosam libero molestias natus officiis perspiciatis provident quas quibusdam quis rem saepe sapiente sed temporibus totam, ut vero voluptates voluptatum. Autem deserunt doloremque eaque, fugit perspiciatis ullam voluptates! Asperiores dignissimos, explicabo! Ab animi commodi consectetur deserunt dicta esse eveniet fuga illo impedit incidunt, maiores minus nam nihil numquam obcaecati optio quidem quis repellendus repudiandae, sapiente sed sunt suscipit temporibus voluptate voluptatibus? Earum, laborum, rem!
+                         {!! $find->description !!}
                     </p>
 
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus doloremque eos facilis fugit iste laudantium magnam mollitia, nemo obcaecati odio praesentium quia quidem, saepe velit veniam voluptatum? Accusamus alias beatae illo? Accusamus adipisci animi atque, est et hic incidunt laborum, nesciunt nihil non obcaecati quas qui sit temporibus, voluptatem! Ad alias aut delectus, deleniti harum, id illo illum ipsa laboriosam magni molestias nobis perferendis quisquam sed, voluptatem! Aliquam blanditiis dignissimos est fugit incidunt itaque nam nesciunt nisi quas quia!
-                    </p>
+                   
                 </div>
                 <div class="card-footer">
-                    <p class="card-text"><small class="text-body-secondary">Last updated / created at 3 mins ago</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$find->created_at->toDayDateTimeString()}}</small></p>
                 </div>
             </div>
         </div>
