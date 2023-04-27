@@ -56,7 +56,7 @@
 
         .card-content {
             position: relative;
-            padding-bottom: 30px;
+            padding-bottom: 50px;
         }
 
         .cover {
@@ -95,6 +95,10 @@
             margin-right: 10px;
         }
 
+        .active {
+            text-shadow: 1px 1px #333;
+        }
+
         @media (min-width:576px) {
             .card .image img {
                 max-height: 30vh;
@@ -117,7 +121,7 @@
 
             <div id="navbar-expand" class="collapse navbar-collapse justify-content-center justify-content-md-end text-center">
                 <div class="navbar-nav">
-                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link active">Home</a>
                     <a href="{{ route('news') }}" class="nav-link">News</a>
                     <a href="#" class="nav-link">About</a>
                     <a href="{{ url('/login') }}" class="btn btn-outline-primary px-3">Login</a>
@@ -176,8 +180,16 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$bull->title}}</h5>
                         <p class="card-text">
-                             {!! substr($bull->description, 0, 500) !!}
-                            <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">Read more</a></span>
+                             {{ mb_strimwidth(strip_tags($bull->description,), 0, 150, '...') }}
+
+                            <span><a href="{{ route('show_news', $bull->id) }}" class="text-decoration-none">
+                                @if(strlen(strip_tags($bull->description)) > 150)
+                                    Read more
+                                @else
+                                    <br><br>
+                                    View news
+                                @endif
+                            </a></span>
                         </p>
                     </div>
                     <div class="card-footer">

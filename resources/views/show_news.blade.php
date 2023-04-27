@@ -69,8 +69,13 @@
         }
 
         .image {
-            min-width: 200px;
-            max-height: 200px;
+            background-image: url('{{URL::to('cover')}}/{{$find->image}}');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            margin: 20px 0;
+            width: 100%;
+            height: 400px;
         }
 
         #navbar-expand .btn {
@@ -113,8 +118,7 @@
         <div class="card mb-3">
             <div class="card-content">
                 <div class="card-header">
-                    <div class="image overflow-hidden">
-                        <img src="{{URL::to('cover')}}/{{$find->image}}" class="img-fluid rounded-start w-100" alt="...">
+                    <div class="image">
                     </div>
                 </div>
                 <div class="card-body p-5 inden">
@@ -122,7 +126,7 @@
                          {!! $find->description !!}
                     </p>
 
-                   
+
                 </div>
                 <div class="card-footer">
                     <p class="card-text"><small class="text-body-secondary">Last updated / created at {{$find->created_at->toDayDateTimeString()}}</small></p>
