@@ -87,4 +87,6 @@ class AdminController extends Controller
             return back()->with('success','Bulletin Updated Successfully!');
         }
     }
+
+    
 }

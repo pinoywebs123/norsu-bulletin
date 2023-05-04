@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -62,6 +63,26 @@ class UsersController extends Controller
         {
             $find->update($validated);
             return back()->with('success','User Updated Successfully!');
+        }
+    }
+
+    public function settings()
+    {
+        return view('admin.setting');
+    }
+
+    public function change_password(Request $request)
+    {
+         $validated = $request->validate([
+            'new_password' => 'required|max:255',
+            'repeat_password' => 'required|max:255'
+            
+        ]);
+        $find = User::find(Auth::id());
+        if( $find )
+        {
+            $find->update(['password'=> bcrypt($request->new_password)]);
+            return back()->with('success','Password Updated Successfully!');
         }
     }
 }

@@ -46,6 +46,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::post('/delete-user', [UsersController::class, 'users_delete'])->name('users_delete');
     Route::post('/find-user', [UsersController::class, 'users_find'])->name('users_find');
     Route::post('/update-user', [UsersController::class, 'users_update'])->name('users_update');
+    Route::get('/settings', [UsersController::class, 'settings'])->name('settings');
+    Route::post('/change-password', [UsersController::class, 'change_password'])->name('change_password');
 
     Route::get('/category', [CategoryController::class, 'category']);
     Route::get('/new-category', [CategoryController::class, 'new_category']);

@@ -58,7 +58,7 @@
                     <i class="fa fa-user-circle"></i>
                     <span>USERS</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{url('/category')}}">
                     <i class="fa fa-window-restore"></i>
                     <span>CATEGORY</span></a>
@@ -113,7 +113,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                
-                                <a class="dropdown-item" href="{{route('settings')}}">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -135,38 +135,28 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">CATEGORY LIST</h1>
+                    <h1 class="h3 mb-2 text-gray-800">SETTINGS</h1>
                     @include('shared.notification')
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createBulletin">NEW CATEGORY</button>
-                        </div>
+                       
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Category Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                        @foreach ($all as $category)
-                                            <tr>
-                                                <td>{{ $category->id }}</td>
-                                                <td>{{ $category->category_name }}</td>
-                                                <td>
-                                                    <button class="btn btn-info btn-sm edit" value="{{$category->id}}" data-toggle="modal" data-target="#editBulletin">EDIT</button>
-                                                    <button class="btn btn-danger btn-sm delete" value="{{$category->id}}" data-toggle="modal" data-target="#categoryDelete">DELETE</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <div class="col-6 offset-3">
+                                    <form action="{{route('change_password')}}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="password" name="new_password" required class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Repeat Password</label>
+                                            <input type="password" name="repeat_password" required class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-warning">UPDATE PASSWORD</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,94 +208,10 @@
         </div>
     </div>
 
-    <div class="modal" id="createBulletin">
-        <div class="modal-dialog">
-          <div class="modal-content">
+   
   
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">New Category</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-  
-            <!-- Modal body -->
-            <form action="{{ route('category_check') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                      <div class="form-group">
-                          <label><strong>Category Name</strong></label>
-                          <input type="text" name="category_name" class="form-control" required>
-                      </div>
-                </div>
-  
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-  
-          </div>
-        </div>
-      </div>
-  
-      <div class="modal" id="categoryDelete">
-        <div class="modal-dialog">
-          <div class="modal-content">
-  
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Are you sure you want to delete?</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-  
-           
-  
-            <!-- Modal footer -->
-            <div class="modal-footer">
-             <form action="{{route('category_delete')}}" method="POST">
-                  @csrf
-                  <input type="hidden" name="category_id" id="categoryHasDelete">
-                  <button class="btn btn-primary">YES</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
-             </form>
-            </div>
-  
-          </div>
-        </div>
-      </div>
+     
 
-       <div class="modal" id="editBulletin">
-        <div class="modal-dialog">
-          <div class="modal-content">
-  
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Category</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-  
-            <!-- Modal body -->
-            <form action="{{ route('update_category') }}" method="POST">
-                @csrf
-                <input type="hidden" name="category_id" id="deleteCategory">
-                <div class="modal-body">
-                      <div class="form-group">
-                          <label><strong>Category Name</strong></label>
-                          <input type="text" name="category_name" class="form-control" required id="categoryName">
-                      </div>
-                </div>
-  
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-  
-          </div>
-        </div>
-      </div>
   
 
     <!-- Bootstrap core JavaScript-->
@@ -324,38 +230,7 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          var find_category_route = '{{route("find_category")}}';
-          var token = '{{Session::token()}}';
-
-          $(".delete").click(function(){
-                var category_id = $(this).val();
-                $("#categoryHasDelete").val(category_id);
-
-          });
-
-           $(".edit").click(function(){
-                var category_id = $(this).val();
-                $("#deleteCategory").val(category_id);
-
-                $.ajax({
-                   type:'POST',
-                   url:find_category_route,
-                   data:{_token: token, category_id: category_id},
-                   success:function(data) {
-                      console.log(data);
-                      $("#categoryName").val(data.category_name);
-                      
-                   }
-                });
-
-
-          });
-
-
-        });
-    </script>
+    
 
 </body>
 
