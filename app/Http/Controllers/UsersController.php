@@ -25,7 +25,10 @@ class UsersController extends Controller
             'password' => 'required|max:255'
         ]);
 
-        $validated ['password'] = bcrypt($validated['password']);
+        $validated['password'] = bcrypt($validated['password']);
+        $validated['role_id'] = 2;
+
+       
 
         User::create($validated);
 

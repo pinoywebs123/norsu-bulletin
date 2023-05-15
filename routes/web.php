@@ -64,6 +64,7 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::post('/find-bulletin', [AdminController::class, 'find_bulletin'])->name('find_bulletin');
     Route::post('/update-bulletin', [AdminController::class, 'update_bulletin'])->name('update_bulletin');
     Route::post('/delete-bulletin', [AdminController::class, 'bulletin_delete'])->name('bulletin_delete');
+    Route::get('/approve-bulletin/{id}', [AdminController::class, 'approve_bulletin'])->name('approve_bulletin');
 
 });
 

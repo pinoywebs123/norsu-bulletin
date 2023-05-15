@@ -21,7 +21,7 @@ class AuthController extends Controller
         ->telegram()
         ->whatsapp()        
         ->reddit();
-        $bulletins = Bulletin::latest()->limit(3)->get();
+        $bulletins = Bulletin::where('status_id',2)->latest()->limit(5)->get();
          return view('home',compact('bulletins','shareButtons'));
     }
     public function login()

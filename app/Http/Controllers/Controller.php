@@ -16,7 +16,7 @@ class Controller extends BaseController
     public function news()
     {
         // sample pagination only
-        $bulletins = Bulletin::latest()->paginate(10);
+        $bulletins = Bulletin::where('status_id', 2)->latest()->paginate(10);
         $shareButtons = \Share::page(
             'https://www.itsolutionstuff.com',
             'Your share text comes here',

@@ -4,18 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Status;
 
-class DatabaseSeeder extends Seeder
+class StatusSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-       $this->call(RoleSeeder::class);
-       $this->call(StatusSeeder::class);
-       $this->call(UserSeeder::class);
+        Status::create(['name'=> 'PENDING']);
+
+        Status::create(['name'=> 'APPROVED']);
     }
 }

@@ -16,7 +16,13 @@ class AdminController extends Controller
 
     public function bulletin()
     {
-        $all = Bulletin::all();
+        if(Auth::user()->role_id == 1)
+        {
+            $all = Bulletin::all();
+        }else {
+            $all = Bulletin::where('user_id', Auth::id())->get();
+        }   
+        
         $categories = Category::all();
         return view('admin.bulletin',compact('all','categories'));
     }
@@ -35,6 +41,14 @@ class AdminController extends Controller
         $request->image->move(public_path($destinationPath), $myimage);
 
         $validated['image'] = $myimage;
+        $validated['user_id'] = Auth::id();
+
+        if(Auth::user()->role_id == 1) 
+        {
+            $validated['status_id'] = 2; 
+        }else {
+            $validated['status_id'] = 1; 
+        }
 
         Bulletin::create($validated);
 
@@ -85,6 +99,18 @@ class AdminController extends Controller
             unset($validated['bulletin_id']);
             $find->update($validated);
             return back()->with('success','Bulletin Updated Successfully!');
+        }
+    }
+
+    public function approve_bulletin($id)
+    {
+        if(Auth::user()->role_id == 1)
+        {
+            $find = Bulletin::find($id);
+            $find->update(['status_id'=> 2]);
+            return back()->with('success','Bulletin Approved Successfully!');
+        }else {
+            return 'Only Super Admin Can has Previledge';
         }
     }
 

@@ -55,7 +55,7 @@
             <hr class="sidebar-divider">
 
           
-
+            @if(Auth::user()->role_id == 1)
             <!-- Nav Item - Tables -->
             <li class="nav-item ">
                 <a class="nav-link" href="{{url('/users')}}">
@@ -67,6 +67,7 @@
                     <i class="fa fa-window-restore"></i>
                     <span>CATEGORY</span></a>
             </li>
+            @endif
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('/bulletin')}}">
                     <i class="fa fa-envelope-open"></i>
@@ -153,7 +154,8 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Position</th>
+                                            <th>Status</th>
+                                            <th>Content</th>
                                             <th>Created</th>
                                             <th>Action</th>
                                             
@@ -164,11 +166,23 @@
                                         @foreach($all as $bulletin)
                                         <tr>
                                             <td>{{$bulletin->title}}</td>
+                                            <td>
+                                                @if($bulletin->status_id == 1)
+                                                    <span>PENDING</span>
+                                                @else 
+                                                     <span>APPROVED</span>
+                                                @endif
+                                            </td>
                                             <td>{!! $bulletin->description !!}</td>
                                             <td>{{$bulletin->created_at}}</td>
                                             <td>
+                                                @if(Auth::user()->role_id == 1)
                                                 <button class="btn btn-info btn-sm edit" value="{{$bulletin->id}}" data-toggle="modal" data-target="#updateBulletin">EDIT</button>
                                                 <button class="btn btn-danger btn-sm delete" value="{{$bulletin->id}}" data-toggle="modal" data-target="#bulletinDelete">DELETE</button>
+                                                <a href="{{route('approve_bulletin',$bulletin->id)}}" class="btn btn-success">APPROVE</a>
+                                                @else
+                                                N/A
+                                                @endif
                                             </td>
                                            
                                         </tr>

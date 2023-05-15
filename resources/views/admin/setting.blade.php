@@ -51,7 +51,7 @@
             <hr class="sidebar-divider">
 
           
-
+             @if(Auth::user()->role_id == 1)
             <!-- Nav Item - Tables -->
              <li class="nav-item ">
                 <a class="nav-link" href="{{url('/users')}}">
@@ -63,6 +63,8 @@
                     <i class="fa fa-window-restore"></i>
                     <span>CATEGORY</span></a>
             </li>
+
+            @endif
             <li class="nav-item ">
                 <a class="nav-link" href="{{url('/bulletin')}}">
                     <i class="fa fa-envelope-open"></i>
