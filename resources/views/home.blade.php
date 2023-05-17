@@ -136,32 +136,32 @@
 
     <div id="carousel-ride" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carousel-ride" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#carousel-ride" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#carousel-ride" data-bs-slide-to="2"></button>
+            @foreach ($bulletins as $bulletin)
+                @if ($loop->first)
+                <button type="button" data-bs-target="#carousel-ride" data-bs-slide-to="0" class="active"></button>
+                @else
+                    <button type="button" data-bs-target="#carousel-ride" data-bs-slide-to="{{ $loop->index }}"></button>
+                @endif
+            @endforeach
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div style="background-image: url({{ URL::to('img/cover0.jpg') }});" class="cover w-100"></div>
-                <div class="carousel-caption">
-                    <h5>Lorem ipsum dolor.</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div style="background-image: url({{ URL::to('img/cover1.jpg') }});" class="cover w-100"></div>
-                <div class="carousel-caption">
-                    <h5>Lorem ipsum dolor.</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div style="background-image: url({{ URL::to('img/cover2.jpg') }});" class="cover w-100"></div>
-                <div class="carousel-caption">
-                    <h5>Lorem ipsum dolor.</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, quidem?</p>
-                </div>
-            </div>
+            @foreach ($bulletins as $bulletin)
+                @if ($loop->first)
+                    <div class="carousel-item active">
+                        <div style="background-image: url('{{ URL::to('cover/' . $bulletin->image) }}');" class="cover w-100"></div>
+                        <div class="carousel-caption">
+                            <h5>{{ $bulletin->title }}</h5>
+                        </div>
+                    </div>
+                @else
+                    <div class="carousel-item">
+                        <div style="background-image: url('{{ URL::to('cover/' . $bulletin->image) }}');" class="cover w-100"></div>
+                        <div class="carousel-caption">
+                            <h5>{{ $bulletin->title }}</h5>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-ride" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
