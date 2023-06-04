@@ -173,7 +173,13 @@
 
     <div class="container-fluid p-3 border bg-gradient-light">
         <h1 class="text-center">Latest news</h1>
-
+        <form method="GET">
+            <select name="filter">
+                <option value="active">Active</option>
+                <option value="archive">Archive</option>
+            </select>
+            <input type="submit" value="Filter">
+        </form>
         @foreach($bulletins as $bull)
         <div class="card mb-3">
             <div class="row g-0">

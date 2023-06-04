@@ -11,6 +11,14 @@ class AuthController extends Controller
 
     public function home()
     {
+        $auto_archive = Bulletin::where('status_id',2)->get();
+        foreach($auto_archive as $archive)
+        {
+            if($archive->schedule < now())
+            {
+                $archive->update(['status_id' => 5]);
+            }
+        }
         $shareButtons = \Share::page(
             'https://www.itsolutionstuff.com',
             'Your share text comes here',
@@ -21,7 +29,18 @@ class AuthController extends Controller
         ->telegram()
         ->whatsapp()        
         ->reddit();
-        $bulletins = Bulletin::where('status_id',2)->latest()->limit(5)->get();
+
+        if(@$_GET['filter'] == "archive")
+        {
+            $bulletins = Bulletin::where('status_id',5)->latest()->limit(5)->orderBy('id','desc')->get();
+        }elseif(@$_GET['filter'] == "active") 
+        {
+            $bulletins = Bulletin::where('status_id',2)->latest()->limit(5)->orderBy('id','desc')->get();
+        }else 
+        {
+            $bulletins = Bulletin::where('status_id',2)->latest()->limit(5)->orderBy('id','desc')->get();
+        }
+        
          return view('home',compact('bulletins','shareButtons'));
     }
     public function login()

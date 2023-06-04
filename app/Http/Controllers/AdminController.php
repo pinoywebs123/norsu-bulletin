@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bulletin;
 use App\Models\Category;
+use App\Models\User;
 use Auth;
 
 class AdminController extends Controller
@@ -18,13 +19,23 @@ class AdminController extends Controller
     {
         if(Auth::user()->role_id == 1)
         {
-            $all = Bulletin::all();
+            
+
+            if(@$_GET['filter'])
+            {
+                $all = Bulletin::where('user_id',$_GET['filter'])->get();
+            }else 
+            {
+                $all = Bulletin::all();
+            }
+            
         }else {
             $all = Bulletin::where('user_id', Auth::id())->get();
         }   
         
         $categories = Category::all();
-        return view('admin.bulletin',compact('all','categories'));
+        $users = User::all();
+        return view('admin.bulletin',compact('all','categories','users'));
     }
 
     public function bulletin_check(Request $request)
@@ -33,7 +44,8 @@ class AdminController extends Controller
             'title' => 'required|unique:bulletins|max:255',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'category_id'   => 'required'
+            'category_id'   => 'required',
+            'schedule'   => 'required'
         ]);
 
         $destinationPath = 'cover';

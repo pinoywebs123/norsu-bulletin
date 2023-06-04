@@ -147,6 +147,14 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createBulletin">NEW BULLETIN</button>
+                            <form method="GET">
+                                <select name="filter">
+                                    @foreach($users as $user)
+                                        <option value="{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="submit" value="Filter">
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -267,6 +275,10 @@
                             <option value="{{$cat->id}}">{{$cat->category_name}}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Schedule Date</strong></label>
+                        <input type="date" name="schedule" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label><strong>Cover Image</strong></label>

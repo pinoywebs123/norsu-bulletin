@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('category_id');
             $table->string('title');
             $table->string('image');
+            $table->date('schedule');
             $table->text('description');
             $table->timestamps();
         });
